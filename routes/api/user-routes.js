@@ -39,24 +39,24 @@ router.post('/api/users', async (req, res) => {
 
 // PUT to update a user by its _id
 router.put('/api/users/:userId', async (req, res) => {
-  try {
+try {
     const user = await User.findByIdAndUpdate(req.params.userId, req.body, { new: true });
     if (!user) {
-      return res.status(404).json({ error: 'User not found.' });
+    return res.status(404).json({ error: 'User not found.' });
     }
     res.json(user);
-  } catch (err) {
+} catch (err) {
     console.error(err);
     res.status(400).json({ error: 'Failed to update user.' });
-  }
+}
 });
 
 // DELETE to remove user by its _id
 router.delete('/api/users/:userId', async (req, res) => {
-  try {
+try {
     const user = await User.findByIdAndDelete(req.params.userId);
     if (!user) {
-      return res.status(404).json({ error: 'User not found.' });
+    return res.status(404).json({ error: 'User not found.' });
     }
     // Bonus: Remove user's associated thoughts
     // Note: You need to implement this logic in your model
