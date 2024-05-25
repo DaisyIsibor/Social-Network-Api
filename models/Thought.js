@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-
 const reactionSchema = require('./Reaction');
 
 const thoughtSchema = new Schema(
@@ -22,7 +21,7 @@ const thoughtSchema = new Schema(
     type: String,
     required: true,
     },
-    reactions: [reactionSchema], // Array of nested documents using reactionSchema
+    reactions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reaction' }], // Array of references to Reaction model
 },
 {
     toJSON: { getters: true },
