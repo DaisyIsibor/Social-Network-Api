@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const User = require('./models/User');
-const Thought = require('./models/Thought');
+const User = require('../models/User');
+const Thought = require('../models/Thought');
 const connection = require('../config/connection');
 
 // Handle connection errors
