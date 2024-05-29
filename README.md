@@ -2,7 +2,7 @@
 
 ## Video Link.
 
-
+https://watch.screencastify.com/v/4k77Tkig57wzvJC1FlLk
 
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-purple.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -21,6 +21,8 @@
 
 
 ## Description
+
+This project is a Social Network API built to serve as the backend for a social networking web application. The API enables users to share their thoughts, react to their friends' thoughts, and manage their friend lists. It leverages Express.js for routing, MongoDB as the database, and the Mongoose ODM for seamless interaction with the database. it offers scalability, flexibility, and developer-friendly features for seamless integration.
 
 
 ## Installation
