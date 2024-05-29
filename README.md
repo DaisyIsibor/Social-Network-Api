@@ -1,6 +1,82 @@
-# 18 NoSQL: Social Network API
+# Social Network API
 
-## Your Task
+## Video Link.
+
+
+
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-purple.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [User Story](#user-story)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Usage](#usage)
+- [Tests](#tests)
+- [Questions](#questions)
+- [Task](#task)
+- [License](#license)
+
+
+## Description
+
+
+## Installation
+You’ll need to use the npm i mongoose npm Install to connect your Express.js 
+
+. Clone the repository to your local machine:
+
+ git clone https://github.com/your/repository.git
+
+. Navigate to the project directory:
+ cd repository-name
+
+. Install the required dependencies:
+ npm install
+
+.configuration
+
+. Install required packages:
+
+. npm install mongoose 
+
+. Seed data into your database / package.json to set up initial records:
+  npm run seed
+
+. Start the server: 
+
+  Launch the Express.js server to run your backend application:
+  npm start
+
+## Usage
+To effectively use the social network API, follow these steps:
+
+. Testing API Endpoints: Use tools like Postman or Insomnia commands to interact with the API endpoints for testing and validation.
+
+. Authentication and Authorization: Implement user authentication and authorization to secure API routes and control access.
+
+. Database Operations: Utilize Mongoose ODM for MongoDB operations. Define models and perform CRUD (Create, Read, Update, Delete) operations on your database.
+
+. Customize Route Handlers: Customize Express.js route handlers to process different HTTP requests:
+
+. Use GET requests to fetch data from the database.
+
+. Implement POST requests to create new records.
+
+. Handle PUT requests to update existing resources.
+
+. Use DELETE requests to remove data from the database.
+
+
+. Error Handling: Implement middleware for error handling to provide appropriate responses for different error scenarios.
+
+
+. Testing and Maintenance: Continuously test the backend application, perform security audits, and maintain code quality for optimal performance and reliability.
+
+
+## Task
 
 MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. Over the last part of this course, you’ll use several of the technologies that social networking platforms use in their full-stack applications. Because the foundation of these applications is data, it’s important that you understand how to build and structure the API first.
 
@@ -32,180 +108,78 @@ WHEN I test API POST and DELETE routes in Insomnia
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 ```
 
-## Mock Up
+## Test
 
-The following animations show examples of the application's API routes being tested in Insomnia.
+The following animations show examples of the application's API routes being tested in Postman.
+Routes 
 
-The following animation shows GET routes to return all users and all thoughts being tested in Insomnia:
+GET : http://localhost:3001/api/users
+GET: http://localhost:3001/api/users/665282e763e0587664b438f2
+GET: http://localhost:3001/api/thoughts
+GET:http://localhost:3001/api/thoughts/665282e763e0587664b438f6
 
-![Demo of GET routes to return all users and all thoughts being tested in Insomnia.](./Assets/18-nosql-homework-demo-01.gif)
 
-The following animation shows GET routes to return a single user and a single thought being tested in Insomnia:
+POST: http://localhost:3001/api/users
 
-![Demo that shows GET routes to return a single user and a single thought being tested in Insomnia.](./Assets/18-nosql-homework-demo-02.gif)
-
-The following animation shows the POST, PUT, and DELETE routes for users being tested in Insomnia:
-
-![Demo that shows the POST, PUT, and DELETE routes for users being tested in Insomnia.](./Assets/18-nosql-homework-demo-03.gif)
-
-In addition to this, your walkthrough video should show the POST, PUT, and DELETE routes for thoughts being tested in Insomnia.
-
-The following animation shows the POST and DELETE routes for a user’s friend list being tested in Insomnia:
-
-![Demo that shows the POST and DELETE routes for a user’s friend list being tested in Insomnia.](./Assets/18-nosql-homework-demo-04.gif)
-
-In addition to this, your walkthrough video should show the POST and DELETE routes for reactions to thoughts being tested in Insomnia.
-
-## Getting Started
-
-Be sure to have MongoDB installed on your machine. Follow the [MongoDB installation guide on The Full-Stack Blog](https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb) to install MongoDB locally.
-
-Use the following guidelines to set up your models and API routes:
-
-### Models
-
-**User**:
-
-* `username`
-  * String
-  * Unique
-  * Required
-  * Trimmed
-
-* `email`
-  * String
-  * Required
-  * Unique
-  * Must match a valid email address (look into Mongoose's matching validation)
-
-* `thoughts`
-  * Array of `_id` values referencing the `Thought` model
-
-* `friends`
-  * Array of `_id` values referencing the `User` model (self-reference)
-
-**Schema Settings**:
-
-Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
-
----
-
-**Thought**:
-
-* `thoughtText`
-  * String
-  * Required
-  * Must be between 1 and 280 characters
-
-* `createdAt`
-  * Date
-  * Set default value to the current timestamp
-  * Use a getter method to format the timestamp on query
-
-* `username` (The user that created this thought)
-  * String
-  * Required
-
-* `reactions` (These are like replies)
-  * Array of nested documents created with the `reactionSchema`
-
-**Schema Settings**:
-
-Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
-
----
-
-**Reaction** (SCHEMA ONLY)
-
-* `reactionId`
-  * Use Mongoose's ObjectId data type
-  * Default value is set to a new ObjectId
-
-* `reactionBody`
-  * String
-  * Required
-  * 280 character maximum
-
-* `username`
-  * String
-  * Required
-
-* `createdAt`
-  * Date
-  * Set default value to the current timestamp
-  * Use a getter method to format the timestamp on query
-
-**Schema Settings**:
-
-This will not be a model, but rather will be used as the `reaction` field's subdocument schema in the `Thought` model.
-
-### API Routes
-
-**`/api/users`**
-
-* `GET` all users
-
-* `GET` a single user by its `_id` and populated thought and friend data
-
-* `POST` a new user:
-
-```json
-// example data
-{
-  "username": "lernantino",
-  "email": "lernantino@gmail.com"
+  {
+  "username": "Anita-K",
+  "email": "anitaK@example.com"
 }
-```
 
-* `PUT` to update a user by its `_id`
 
-* `DELETE` to remove user by its `_id`
+POST: http://localhost:3001/api/thoughts
 
-**BONUS**: Remove a user's associated thoughts when deleted.
-
----
-
-**`/api/users/:userId/friends/:friendId`**
-
-* `POST` to add a new friend to a user's friend list
-
-* `DELETE` to remove a friend from a user's friend list
-
----
-
-**`/api/thoughts`**
-
-* `GET` to get all thoughts
-
-* `GET` to get a single thought by its `_id`
-
-* `POST` to create a new thought (don't forget to push the created thought's `_id` to the associated user's `thoughts` array field)
-
-```json
-// example data
 {
-  "thoughtText": "Here's a cool thought...",
-  "username": "lernantino",
-  "userId": "5edff358a0fcb779aa7b118b"
+  "thoughtText": "I think the earth is circle rathn than sphere.",
+  "username": "Anita-K",
+  "userId": "6655412a0c05aad3b252e73a" 
 }
-```
-
-* `PUT` to update a thought by its `_id`
-
-* `DELETE` to remove a thought by its `_id`
-
----
-
-**`/api/thoughts/:thoughtId/reactions`**
-
-* `POST` to create a reaction stored in a single thought's `reactions` array field
-
-* `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
 
 
-### Bonus: +10 Points
+PUT: http://localhost:3001/api/thoughts/665283cffc787fc162e5b396
 
-Fulfilling the following can add up to 10 points to your grade. Note that the highest grade you can achieve is still 100:
+{
+  "thoughtText": "I think the earth is circle rather than sphere, well we can never really tell as we can't see for ourselves.",
+  "username": "Anita-K",
+  "userId": "6655412a0c05aad3b252e73a" 
+}
 
-* Application deletes a user's associated thoughts when the user is deleted.
+POST: http://localhost:3001/api/users/6655412a0c05aad3b252e73a/friends/665283a0fc787fc162e5b394
 
+
+
+PUT:http://localhost:3001/api/users/665283a0fc787fc162e5b394
+
+DELETE:http://localhost:3001/api/users/665283a0fc787fc162e5b394
+DELETE:http://localhost:3001/api/thoughts/665282e763e0587664b438f2
+
+POST:http://localhost:3001/api/thoughts/6655534c4da083ee5239814f/reactions/
+
+DELETE: http://localhost:3001/api/thoughts/6655534c4da083ee5239814f/reactions/6656822c98c6e20e8fcbc0ee
+
+
+IMAGES
+
+![alt text](images/Delete-reaction.png)
+![alt text](images/Delete-Thought.png)
+![alt text](images/Delete-User.png)
+![alt text](images/Edit-userThought.png)
+![alt text](images/Get-Though(id).png)
+![alt text](images/GET-thoughts.png)
+![alt text](images/Get-User(id).png)
+![alt text](images/Get-Users.png)
+![alt text](images/Post-newFriend.png)
+![alt text](images/POST-reaction.png)
+![alt text](images/POST-user.png)
+![alt text](images/Post-userThought.png)
+![alt text](images/PUT-user.png)
+
+
+
+## Questions
+
+- **GitHub**: [daisy isibor](https://github.com/daisy isibor)
+- **Email**: daisyisibor9@duck.com
+
+## License
+  This project is licensed under the [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0)
