@@ -77,7 +77,8 @@ const userController = {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-      user.friends = user.friends.filter(friend => friend !== friendId);
+      // Filter out the friendId from the user's friends array
+      user.friends = user.friends.filter(friend => friend.toString() !== friendId);
       await user.save();
       res.json(user);
     } catch (error) {

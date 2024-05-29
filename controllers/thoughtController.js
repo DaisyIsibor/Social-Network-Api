@@ -1,5 +1,6 @@
 const Thought = require('../models/Thought');
 const User = require('../models/User');
+const Reaction = require('../models/Reaction');
 
 const thoughtController = {
   getThoughts: async (req, res) => {
@@ -62,7 +63,12 @@ const thoughtController = {
       if (!thought) {
         return res.status(404).json({ message: 'Thought not found' });
       }
-      thought.reactions.push(req.body);
+
+      const newReaction=new Reaction(req.body);
+      await newReaction.save();
+
+
+      thought.reactions.push(newReaction._id);
       const updatedThought = await thought.save();
       res.json(updatedThought);
     } catch (error) {
@@ -76,9 +82,16 @@ const thoughtController = {
       if (!thought) {
         return res.status(404).json({ message: 'Thought not found' });
       }
-      thought.reactions = thought.reactions.filter(reaction => reaction.reactionId !== req.params.reactionId);
+      thought.reactions = thought.reactions.filter(reactionId=> reactionId.toString() !== req.params.reactionId);
       const updatedThought = await thought.save();
       res.json(updatedThought);
+
+      // option to also delete the Reaction document itself from the database 
+
+      await
+      Reaction.findByIdAndDelete(req.params.reactionId);
+      res.json(updatedThought);
+
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

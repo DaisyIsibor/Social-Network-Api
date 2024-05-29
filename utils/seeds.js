@@ -33,12 +33,14 @@ try {
 
     const thoughts = [
     {
-        thoughtText: "Here's a cool thought...",
+      thoughtText: "Here's a cool thought...",
         username: "Alexandre",
-        userId: createdUsers[0]._id // Use the ID of the first created user
+        userId: createdUsers[0]._id,
+        reactionText: "I agree!"
     },
-      // Add more thoughts if needed
-    ];
+   
+];
+
 
     const createdThoughts = await Thought.insertMany(thoughts);
     console.log('Thoughts seeded successfully:', createdThoughts);
